@@ -1,17 +1,4 @@
-/* =============================================
-   E-PORTFOLIO — Ansharlene Crystal Balagosa
-   script.js
-   ============================================= */
-
-/* ── Badge / Certification Data ── */
 const badgeData = [
-  {
-    name: "AWS Certified AI Practitioner",
-    issuer: "AWS Training & Certification",
-    year: "Apr 2026",
-    type: "cert",
-    img: "aws-certified-ai-practitioner.png"
-  },
   {
     name: "AWS Academy Cloud Architecting",
     issuer: "Amazon Web Services",
@@ -56,37 +43,66 @@ const badgeData = [
   }
 ];
 
-/* ── Render Certifications Grid ── */
-function renderCerts() {
-  const container = document.getElementById("certs-container");
+const certData = [
+  {
+    name: "AWS Certified AI Practitioner",
+    issuer: "AWS Training & Certification",
+    year: "Apr 2026",
+    type: "cert",
+    img: "AWS Certified AI Practitioner_page-0001.jpg",
+    pdf: "AWS Certified AI Practitioner.pdf"
+  },
+  {
+    name: "Microsoft Excel",
+    issuer: "Microsoft",
+    year: "2026",
+    type: "cert",
+    img: "Microsoft Excel_page-0001.jpg",
+    pdf: "Microsoft Excel.pdf"
+  }
+];
+
+function renderCards(data, containerId) {
+  const container = document.getElementById(containerId);
   if (!container) return;
 
-  badgeData.forEach(function(b) {
+  data.forEach(function(b) {
     const card = document.createElement("div");
     card.className = "cert-card";
 
     const img = document.createElement("img");
     img.className = "cert-badge-img";
     img.src = "files/" + b.img;
-    img.alt = b.name + " badge";
+    img.alt = b.name + " preview";
+
+    let media = img;
+
+    if (b.pdf) {
+      const link = document.createElement("a");
+      link.href = "files/" + b.pdf;
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.className = "cert-link";
+      link.appendChild(img);
+      media = link;
+    }
 
     const info = document.createElement("div");
     info.className = "cert-info";
     info.innerHTML =
-      '<div class="cert-name">'   + b.name   + '</div>' +
-      '<div class="cert-issuer">' + b.issuer  + '</div>' +
-      '<div class="cert-year">'   + b.year    + '</div>' +
-      '<span class="cert-pill '   + (b.type === "cert" ? "pill-cert" : "pill-badge") + '">' +
+      '<div class="cert-name">' + b.name + '</div>' +
+      '<div class="cert-issuer">' + b.issuer + '</div>' +
+      '<div class="cert-year">' + b.year + '</div>' +
+      '<span class="cert-pill ' + (b.type === "cert" ? "pill-cert" : "pill-badge") + '">' +
         (b.type === "cert" ? "Certification" : "Training Badge") +
       '</span>';
 
-    card.appendChild(img);
+    card.appendChild(media);
     card.appendChild(info);
     container.appendChild(card);
   });
 }
 
-/* ── Contact Form Submit Handler ── */
 function handleSubmit(e) {
   e.preventDefault();
   const btn = e.target.querySelector("button[type='submit']");
@@ -104,26 +120,29 @@ function handleSubmit(e) {
   }, 3000);
 }
 
-/* ── Active Nav Link Highlight on Scroll ── */
 function initScrollSpy() {
   const sections = document.querySelectorAll("section[id]");
-  const links    = document.querySelectorAll(".nav-links a");
+  const links = document.querySelectorAll(".nav-links a");
 
   const observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
-        links.forEach(function(link) { link.style.color = ""; });
+        links.forEach(function(link) {
+          link.style.color = "";
+        });
         const active = document.querySelector('.nav-links a[href="#' + entry.target.id + '"]');
         if (active) active.style.color = "var(--text)";
       }
     });
   }, { threshold: 0.4 });
 
-  sections.forEach(function(s) { observer.observe(s); });
+  sections.forEach(function(s) {
+    observer.observe(s);
+  });
 }
 
-/* ── Init ── */
 document.addEventListener("DOMContentLoaded", function() {
-  renderCerts();
+  renderCards(badgeData, "badges-container");
+  renderCards(certData, "certs-container");
   initScrollSpy();
 });
