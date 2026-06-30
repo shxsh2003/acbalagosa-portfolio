@@ -103,23 +103,6 @@ function renderCards(data, containerId) {
   });
 }
 
-function handleSubmit(e) {
-  e.preventDefault();
-  const btn = e.target.querySelector("button[type='submit']");
-  const original = btn.textContent;
-
-  btn.textContent = "Message sent ✓";
-  btn.style.background = "#3d8c5f";
-  btn.disabled = true;
-
-  setTimeout(function() {
-    btn.textContent = original;
-    btn.style.background = "";
-    btn.disabled = false;
-    e.target.reset();
-  }, 3000);
-}
-
 function initScrollSpy() {
   const sections = document.querySelectorAll("section[id]");
   const links = document.querySelectorAll(".nav-links a");
