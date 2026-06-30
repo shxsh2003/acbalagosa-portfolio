@@ -4,6 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ansharlene Crystal Balagosa Portfolio</title>
+  <meta name="description" content="Portfolio of Ansharlene Crystal C. Balagosa — BS Information Systems student at Mapúa Malayan Colleges Mindanao." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="files/favicon.svg" />
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Ansharlene Crystal Balagosa — Portfolio" />
+  <meta property="og:description" content="BS Information Systems student bridging technology with business. AWS and Microsoft certified, with hands-on capstone and client project experience." />
+  <meta property="og:image" content="files/og-cover.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ansharlene Crystal Balagosa — Portfolio" />
+  <meta name="twitter:description" content="BS Information Systems student bridging technology with business." />
+  <meta name="twitter:image" content="files/og-cover.png" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -22,6 +37,10 @@
       <li><a href="#certificates">Certificates</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle light and dark theme" title="Toggle theme">
+      <svg id="icon-moon" class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg id="icon-sun" class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    </button>
   </nav>
 
   <section id="hero">
@@ -47,7 +66,7 @@
 
   <hr class="divider">
 
-  <section id="about">
+  <section id="about" class="reveal">
     <div class="section-label">01 About me</div>
     <div class="about-grid">
       <div>
@@ -76,7 +95,7 @@
 
   <hr class="divider">
 
-  <section id="skills">
+  <section id="skills" class="reveal">
     <div class="section-label">02 Skills</div>
     <h2>What I work with</h2>
     <div class="skills-grid">
@@ -119,13 +138,13 @@
 
   <hr class="divider">
 
-  <section id="projects">
+  <section id="projects" class="reveal">
     <div class="section-label">03 Projects</div>
     <h2>Things I've built</h2>
 
     <div class="projects-list">
       <div class="project-card">
-        <a href="files/LINA Project.png" target="_blank" rel="noopener" class="project-image-link">
+        <a href="files/LINA Project.png" class="project-image-link" data-lightbox data-caption="LINA Business Information and Management System">
           <img src="files/LINA Project.png" alt="LINA Business Information and Management System preview" class="project-image">
         </a>
         <div class="project-content">
@@ -146,7 +165,7 @@
       </div>
 
       <div class="project-card">
-        <a href="files/Finance Tracker.png" target="_blank" rel="noopener" class="project-image-link">
+        <a href="files/Finance Tracker.png" class="project-image-link" data-lightbox data-caption="Finance Tracker Web App">
           <img src="files/Finance Tracker.png" alt="Finance Tracker Web App preview" class="project-image">
         </a>
         <div class="project-content">
@@ -160,14 +179,14 @@
             <span class="tag">Academic Project</span>
           </div>
           <div class="project-links">
-            <a href="https://shxsh2003.github.io/FinanceTracker/" class="link-btn">View project</a>
+            <a href="https://shxsh2003.github.io/FinanceTracker/" class="link-btn" target="_blank" rel="noopener">View project</a>
           </div>
         </div>
         <span class="project-status status-done">Completed 2025</span>
       </div>
 
       <div class="project-card">
-        <a href="files/Duh Trends Palas.png" target="_blank" rel="noopener" class="project-image-link">
+        <a href="files/Duh Trends Palas.png" class="project-image-link" data-lightbox data-caption="Duh Trends Palas Point of Sale System">
           <img src="files/Duh Trends Palas.png" alt="Duh Trends Palas Point of Sale System preview" class="project-image">
         </a>
         <div class="project-content">
@@ -190,7 +209,7 @@
 
   <hr class="divider">
 
-  <section id="education">
+  <section id="education" class="reveal">
     <div class="section-label">04 Education</div>
     <h2>Academic background</h2>
 
@@ -215,7 +234,7 @@
 
   <hr class="divider">
 
-  <section id="badges">
+  <section id="badges" class="reveal">
     <div class="section-label">05 Badges</div>
     <h2>Training badges</h2>
     <div class="certs-grid" id="badges-container"></div>
@@ -223,7 +242,7 @@
 
   <hr class="divider">
 
-  <section id="certificates">
+  <section id="certificates" class="reveal">
     <div class="section-label">06 Certificates</div>
     <h2>Certificates</h2>
     <div class="certs-grid" id="certs-container"></div>
@@ -231,7 +250,7 @@
 
   <hr class="divider">
 
-  <section id="contact">
+  <section id="contact" class="reveal">
     <div class="contact-heading">
       <div class="section-label">07 Contact</div>
       <h2>Let's connect</h2>
@@ -239,20 +258,30 @@
     </div>
 
     <div class="contact-links">
-      <a href="mailto:acBalagosa@mcm.edu.ph" class="contact-link">
+      <div class="contact-link">
         <div class="contact-icon">M</div>
         <div class="contact-text">
           <div class="contact-label">School email</div>
           <span>acBalagosa@mcm.edu.ph</span>
         </div>
-      </a>
-      <a href="mailto:ansharlenecrystalbalagosa@gmail.com" class="contact-link">
+        <div class="contact-actions">
+          <a href="mailto:acBalagosa@mcm.edu.ph" class="contact-action" title="Send email" aria-label="Send email">✉</a>
+          <button class="contact-action copy-email-btn" data-email="acBalagosa@mcm.edu.ph" title="Copy email" aria-label="Copy email">⧉</button>
+        </div>
+      </div>
+
+      <div class="contact-link">
         <div class="contact-icon">G</div>
         <div class="contact-text">
           <div class="contact-label">Personal email</div>
           <span>ansharlenecrystalbalagosa@gmail.com</span>
         </div>
-      </a>
+        <div class="contact-actions">
+          <a href="mailto:ansharlenecrystalbalagosa@gmail.com" class="contact-action" title="Send email" aria-label="Send email">✉</a>
+          <button class="contact-action copy-email-btn" data-email="ansharlenecrystalbalagosa@gmail.com" title="Copy email" aria-label="Copy email">⧉</button>
+        </div>
+      </div>
+
       <a href="https://www.linkedin.com/in/ansharlene-crystal-balagosa-6251b8294/" class="contact-link" target="_blank" rel="noopener">
         <div class="contact-icon">in</div>
         <div class="contact-text">
@@ -260,6 +289,7 @@
           <span>ansharlene-crystal-balagosa</span>
         </div>
       </a>
+
       <a href="files/BALAGOSA - RESUME CCIS-BSIS.pdf" class="contact-link" download="BalagosaResume.pdf">
         <div class="contact-icon">CV</div>
         <div class="contact-text">
@@ -273,6 +303,16 @@
   <footer>
     <p>Ansharlene Crystal Balagosa · BS Information Systems · Mapúa Malayan Colleges Mindanao · 2026</p>
   </footer>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close preview">✕</button>
+    <img id="lightbox-img" class="lightbox-img" src="" alt="">
+    <div id="lightbox-caption" class="lightbox-caption"></div>
+  </div>
+
+  <!-- Back to top -->
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top" title="Back to top">↑</button>
 
   <script src="files/script.js"></script>
 </body>

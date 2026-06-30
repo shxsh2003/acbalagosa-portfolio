@@ -134,8 +134,156 @@ function initScrollSpy() {
   });
 }
 
+/* ---------- Theme toggle ---------- */
+function initThemeToggle() {
+  const toggle = document.getElementById("theme-toggle");
+  if (!toggle) return;
+
+  const stored = localStorage.getItem("portfolio-theme");
+  const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+  const initial = stored || (prefersLight ? "light" : "dark");
+
+  if (initial === "light") {
+    document.documentElement.setAttribute("data-theme", "light");
+  }
+
+  toggle.addEventListener("click", function() {
+    const isLight = document.documentElement.getAttribute("data-theme") === "light";
+    if (isLight) {
+      document.documentElement.removeAttribute("data-theme");
+      localStorage.setItem("portfolio-theme", "dark");
+    } else {
+      document.documentElement.setAttribute("data-theme", "light");
+      localStorage.setItem("portfolio-theme", "light");
+    }
+  });
+}
+
+/* ---------- Copy email buttons ---------- */
+function initCopyEmail() {
+  document.querySelectorAll(".copy-email-btn").forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      const email = btn.getAttribute("data-email");
+      const done = function() {
+        const original = btn.textContent;
+        btn.textContent = "✓";
+        btn.classList.add("copied");
+        btn.title = "Copied!";
+        setTimeout(function() {
+          btn.textContent = original;
+          btn.classList.remove("copied");
+          btn.title = "Copy email";
+        }, 1800);
+      };
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(done).catch(function() {
+          fallbackCopy(email, done);
+        });
+      } else {
+        fallbackCopy(email, done);
+      }
+    });
+  });
+}
+
+function fallbackCopy(text, cb) {
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); } catch (e) {}
+  document.body.removeChild(ta);
+  if (cb) cb();
+}
+
+/* ---------- Lightbox ---------- */
+function initLightbox() {
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+  const lightboxCaption = document.getElementById("lightbox-caption");
+  const closeBtn = document.getElementById("lightbox-close");
+  if (!lightbox || !lightboxImg) return;
+
+  function open(src, caption) {
+    lightboxImg.src = src;
+    lightboxImg.alt = caption || "";
+    lightboxCaption.textContent = caption || "";
+    lightbox.classList.add("open");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function close() {
+    lightbox.classList.remove("open");
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    lightboxImg.src = "";
+  }
+
+  document.querySelectorAll("[data-lightbox]").forEach(function(el) {
+    el.addEventListener("click", function(e) {
+      e.preventDefault();
+      const img = el.querySelector("img");
+      const src = el.getAttribute("href") || (img ? img.src : "");
+      const caption = el.getAttribute("data-caption") || (img ? img.alt : "");
+      open(src, caption);
+    });
+  });
+
+  closeBtn.addEventListener("click", close);
+  lightbox.addEventListener("click", function(e) {
+    if (e.target === lightbox) close();
+  });
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") close();
+  });
+}
+
+/* ---------- Back to top ---------- */
+function initBackToTop() {
+  const btn = document.getElementById("back-to-top");
+  if (!btn) return;
+
+  window.addEventListener("scroll", function() {
+    if (window.scrollY > 480) {
+      btn.classList.add("visible");
+    } else {
+      btn.classList.remove("visible");
+    }
+  });
+
+  btn.addEventListener("click", function() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
+/* ---------- Scroll reveal ---------- */
+function initScrollReveal() {
+  const items = document.querySelectorAll(".reveal");
+  if (!items.length) return;
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("in-view");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  items.forEach(function(el) { observer.observe(el); });
+}
+
 document.addEventListener("DOMContentLoaded", function() {
   renderCards(badgeData, "badges-container");
   renderCards(certData, "certs-container");
   initScrollSpy();
+  initThemeToggle();
+  initCopyEmail();
+  initLightbox();
+  initBackToTop();
+  initScrollReveal();
 });
