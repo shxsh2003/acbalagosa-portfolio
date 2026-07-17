@@ -78,15 +78,15 @@
       </div>
       <div class="about-stats">
         <div class="stat-block">
-          <div class="stat-number">3</div>
+          <div class="stat-number" id="stat-projects" data-target="0">0</div>
           <div class="stat-label">Real-world projects built</div>
         </div>
         <div class="stat-block">
-          <div class="stat-number">7</div>
+          <div class="stat-number" id="stat-badges" data-target="0">0</div>
           <div class="stat-label">Badges and certifications</div>
         </div>
         <div class="stat-block">
-          <div class="stat-number">2</div>
+          <div class="stat-number" id="stat-leadership" data-target="0">0</div>
           <div class="stat-label">Student org leadership roles</div>
         </div>
       </div>
@@ -98,39 +98,40 @@
   <section id="skills" class="reveal">
     <div class="section-label">02 Skills</div>
     <h2>What I work with</h2>
+    <!-- Hover any tag to see context. Edit the data-tip text to keep it accurate. -->
     <div class="skills-grid">
       <div class="skill-card">
         <div class="skill-category">Technical</div>
         <div class="skill-tags">
-          <span class="tag">Business Info Systems</span>
-          <span class="tag">Microsoft Excel</span>
-          <span class="tag">Web Development</span>
+          <span class="skill-tag" data-tip="Core academic focus — applied across coursework and the LINA capstone.">Business Info Systems</span>
+          <span class="skill-tag" data-tip="Microsoft-certified — used for reporting, budgeting and data analysis.">Microsoft Excel</span>
+          <span class="skill-tag" data-tip="Built and shipped 2 web apps: a POS system and a finance tracker.">Web Development</span>
         </div>
       </div>
       <div class="skill-card">
         <div class="skill-category">Cloud / AI</div>
         <div class="skill-tags">
-          <span class="tag">AWS Cloud</span>
-          <span class="tag">Generative AI</span>
-          <span class="tag">Cloud Architecture</span>
+          <span class="skill-tag" data-tip="AWS Academy Cloud Foundations & Cloud Architecting graduate.">AWS Cloud</span>
+          <span class="skill-tag" data-tip="AWS Educate Intro to Generative AI & AWS Academy GenAI Foundations certified.">Generative AI</span>
+          <span class="skill-tag" data-tip="AWS Academy Cloud Architecting — designing scalable cloud systems.">Cloud Architecture</span>
         </div>
       </div>
       <div class="skill-card">
         <div class="skill-category">IS Concepts</div>
         <div class="skill-tags">
-          <span class="tag">Systems Analysis</span>
-          <span class="tag">Database Mgmt</span>
-          <span class="tag">SDLC</span>
-          <span class="tag">Business Process</span>
+          <span class="skill-tag" data-tip="Core IS coursework — requirements gathering through system design.">Systems Analysis</span>
+          <span class="skill-tag" data-tip="Applied in the POS system and LINA capstone database design.">Database Mgmt</span>
+          <span class="skill-tag" data-tip="Followed across academic and client project lifecycles.">SDLC</span>
+          <span class="skill-tag" data-tip="Mapped and improved workflows for a real local business client.">Business Process</span>
         </div>
       </div>
       <div class="skill-card">
         <div class="skill-category">Soft Skills</div>
         <div class="skill-tags">
-          <span class="tag">Teamwork</span>
-          <span class="tag">Adaptability</span>
-          <span class="tag">Documentation</span>
-          <span class="tag">Willingness to Learn</span>
+          <span class="skill-tag" data-tip="Collaborated across capstone and group academic projects.">Teamwork</span>
+          <span class="skill-tag" data-tip="Moved comfortably between cloud, dev, and business coursework.">Adaptability</span>
+          <span class="skill-tag" data-tip="Wrote technical and process documentation for client and capstone work.">Documentation</span>
+          <span class="skill-tag" data-tip="Earned 4+ certifications in under a year of self-driven learning.">Willingness to Learn</span>
         </div>
       </div>
     </div>
@@ -213,22 +214,36 @@
     <div class="section-label">04 Education</div>
     <h2>Academic background</h2>
 
-    <div class="edu-card">
-      <div class="edu-degree">Bachelor of Science in Information Systems</div>
-      <div class="edu-school">Mapúa Malayan Colleges Mindanao</div>
-      <div class="edu-year">2022 – May 2027 Expected · Davao City, Philippines</div>
-      <p>
-        Hands-on experience in developing business information systems, inventory management solutions, and web applications through academic and capstone projects.
-      </p>
-    </div>
+    <div class="edu-timeline">
+      <div class="edu-item">
+        <div class="edu-marker-col">
+          <div class="edu-dot"></div>
+          <div class="edu-line"></div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-degree">Bachelor of Science in Information Systems</div>
+          <div class="edu-school">Mapúa Malayan Colleges Mindanao</div>
+          <div class="edu-year">2022 – May 2027 Expected · Davao City, Philippines</div>
+          <p>
+            Hands-on experience in developing business information systems, inventory management solutions, and web applications through academic and capstone projects.
+          </p>
+        </div>
+      </div>
 
-    <div class="edu-card">
-      <div class="edu-degree">Technical Vocational Livelihood, Home Economics Strand</div>
-      <div class="edu-school">Brokenshire College Toril</div>
-      <div class="edu-year">Graduated May 2022</div>
-      <p>
-        Developed practical skills in entrepreneurship, customer service, household management, and workplace professionalism through hands-on learning and project-based activities.
-      </p>
+      <div class="edu-item">
+        <div class="edu-marker-col">
+          <div class="edu-dot"></div>
+          <div class="edu-line"></div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-degree">Technical Vocational Livelihood, Home Economics Strand</div>
+          <div class="edu-school">Brokenshire College Toril</div>
+          <div class="edu-year">Graduated May 2022</div>
+          <p>
+            Developed practical skills in entrepreneurship, customer service, household management, and workplace professionalism through hands-on learning and project-based activities.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 

@@ -68,6 +68,15 @@ const certData = [
   }
 ];
 
+/* ---------- Student org / leadership roles ----------
+   Add one entry per role and the "Student org leadership roles" stat
+   on the About section will count itself automatically, same as
+   the badges/certificates count below. */
+const leadershipData = [
+  { role: "Officer", org: "Student Organization", year: "" },
+  { role: "Officer", org: "Student Organization", year: "" }
+];
+
 function renderCards(data, containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -277,6 +286,55 @@ function initScrollReveal() {
   items.forEach(function(el) { observer.observe(el); });
 }
 
+/* ---------- Auto-counting About stats ---------- */
+function initStatCounters() {
+  const projectsEl = document.getElementById("stat-projects");
+  const badgesEl = document.getElementById("stat-badges");
+  const leadershipEl = document.getElementById("stat-leadership");
+
+  if (projectsEl) {
+    projectsEl.dataset.target = document.querySelectorAll(".project-card").length;
+  }
+  if (badgesEl) {
+    badgesEl.dataset.target = badgeData.length + certData.length;
+  }
+  if (leadershipEl) {
+    leadershipEl.dataset.target = leadershipData.length;
+  }
+
+  const counters = document.querySelectorAll(".stat-number[data-target]");
+  if (!counters.length) return;
+
+  function animateCount(el) {
+    const target = parseInt(el.dataset.target, 10) || 0;
+    const duration = 900;
+    const start = performance.now();
+
+    function tick(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(eased * target);
+      if (progress < 1) {
+        requestAnimationFrame(tick);
+      } else {
+        el.textContent = target;
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        animateCount(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(function(el) { observer.observe(el); });
+}
+
 document.addEventListener("DOMContentLoaded", function() {
   renderCards(badgeData, "badges-container");
   renderCards(certData, "certs-container");
@@ -286,4 +344,5 @@ document.addEventListener("DOMContentLoaded", function() {
   initLightbox();
   initBackToTop();
   initScrollReveal();
+  initStatCounters();
 });
